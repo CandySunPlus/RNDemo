@@ -10,11 +10,18 @@ const path = require('node:path');
  */
 const config = mergeConfig(getDefaultConfig(__dirname), {
   projectRoot: path.resolve(__dirname, './src'),
-  watchFolders: [__dirname, path.resolve(__dirname, './src')],
+  watchFolders: [path.resolve(__dirname)],
   resolver: {
-    nodeModulesPaths: [
-      path.resolve(__dirname, './node_modules'),
-    ]
-  }
+    nodeModulesPaths: [path.resolve(__dirname, './node_modules')],
+  },
 });
-module.exports = withNativeWind(config, {input: './src/global.css'});
+
+const nativewind = withNativeWind(config, {
+  input: './src/global.css',
+  projectRoot: path.resolve(__dirname, './src'),
+  outputDir: 'src',
+});
+
+console.log(nativewind);
+
+module.exports = nativewind;
