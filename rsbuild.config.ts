@@ -4,7 +4,15 @@ import { pluginCheckSyntax } from '@rsbuild/plugin-check-syntax';
 import { pluginTypeCheck } from '@rsbuild/plugin-type-check';
 import path from 'node:path';
 
-const plugins = [pluginReact(), pluginTypeCheck()];
+const plugins = [
+  pluginReact({
+    swcReactOptions: {
+      runtime: 'automatic',
+      importSource: 'nativewind',
+    },
+  }),
+  pluginTypeCheck(),
+];
 
 if (process.env.CHECK_SYNTAX) {
   plugins.push(pluginCheckSyntax());
@@ -12,6 +20,18 @@ if (process.env.CHECK_SYNTAX) {
 export default defineConfig({
   plugins,
   resolve: {
+    extensions: [
+      '.web.tsx',
+      '.tsx',
+      '.web.ts',
+      '.ts',
+      '.web.jsx',
+      '.jsx',
+      '.web.js',
+      '.js',
+      '.css',
+      '.json',
+    ],
     alias: {
       'react-native': 'react-native-web',
     },

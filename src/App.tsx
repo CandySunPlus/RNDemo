@@ -7,28 +7,23 @@
 
 import {
   StatusBar,
-  StyleSheet,
   useColorScheme,
   View,
   Text,
 } from 'react-native';
 
+import './global.css';
+
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
   return (
-    <View style={styles.container}>
+    <View className="flex-1 item-center justify-center bg-red-600">
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <Text> Hello React Native </Text>
+      <Text className={"text-3xl font-bold text-blue-500"}> Hello React Native </Text>
       <Text> React Native for Web build by RsBuild </Text>
-      <Text> Powered by Typescript </Text>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default App;
