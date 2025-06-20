@@ -19,6 +19,11 @@ if (process.env.CHECK_SYNTAX) {
 }
 export default defineConfig({
   plugins,
+  source: {
+    entry: {
+      index: './index.js',
+    },
+  },
   resolve: {
     extensions: [
       '.web.tsx',

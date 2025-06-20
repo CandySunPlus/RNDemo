@@ -1,24 +1,12 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import './global.css';
-import { StatusBar, useColorScheme, View, Text } from 'react-native';
+import { Text, View } from 'react-native';
 
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+export default function App() {
   return (
-    <View className="flex-1 item-center justify-center bg-red-600">
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <Text className="text-3xl font-bold text-blue-500">
-        Hello React Native and Web
+    <View className="flex-1 items-center justify-center bg-white">
+      <Text className="text-xl font-bold text-blue-500">
+        Welcome to Nativewind!
       </Text>
-      <Text className="text-lg text-white mt-4">Welcome to use it</Text>
     </View>
   );
 }
-
-export default App;
