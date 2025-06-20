@@ -1,9 +1,18 @@
 import './global.css';
 import { Text, View } from 'react-native';
-import { createStaticNavigation } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {
+  NavigationContainer,
+  ParamListBase,
+  useNavigation,
+} from '@react-navigation/native';
+import {
+  NativeStackNavigationProp,
+  createNativeStackNavigator,
+} from '@react-navigation/native-stack';
+import { Button } from '@react-navigation/elements';
 
 function HomeScreen() {
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   return (
     <View className="flex-1 items-center justify-center bg-white">
       <Text className="text-xl font-bold text-blue-500">
@@ -11,6 +20,9 @@ function HomeScreen() {
       </Text>
       <Text className="text-red-500">Build RN via Metro</Text>
       <Text className="text-red-500">Build RNW via Rsbuild</Text>
+      <Button onPress={() => navigation.navigate('Details')}>
+        Go to Details
+      </Button>
     </View>
   );
 }
@@ -25,24 +37,28 @@ function DetailsScreen() {
   );
 }
 
-const RootStack = createNativeStackNavigator({
-  initialRouteName: 'Home',
-  screenOptions: {
-    headerStyle: { backgroundColor: 'tomato' },
-  },
-  screens: {
-    Home: {
-      screen: HomeScreen,
-      options: {
-        title: 'Overview',
-      },
-    },
-    Details: DetailsScreen,
-  },
-});
+const Stack = createNativeStackNavigator();
 
-const Navigation = createStaticNavigation(RootStack);
+function RootStack() {
+  return (
+    <Stack.Navigator
+      initialRouteName="Home"
+      screenOptions={{ headerStyle: { backgroundColor: 'tomato' } }}
+    >
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{ title: 'Overview' }}
+      />
+      <Stack.Screen name="Details" component={DetailsScreen} />
+    </Stack.Navigator>
+  );
+}
 
 export default function App() {
-  return <Navigation />;
+  return (
+    <NavigationContainer>
+      <RootStack />
+    </NavigationContainer>
+  );
 }
