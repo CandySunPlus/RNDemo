@@ -1,18 +1,20 @@
 import './global.css';
 import { Text, View } from 'react-native';
-import {
-  NavigationContainer,
-  ParamListBase,
-  useNavigation,
-} from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import {
   NativeStackNavigationProp,
   createNativeStackNavigator,
 } from '@react-navigation/native-stack';
 import { Button } from '@react-navigation/elements';
 
+type ParamList = {
+  Home: undefined;
+  Details: undefined;
+};
+
 function HomeScreen() {
-  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
+  const navigation = useNavigation<NativeStackNavigationProp<ParamList>>();
   return (
     <View className="flex-1 items-center justify-center bg-white">
       <Text className="text-xl font-bold text-blue-500">
@@ -28,11 +30,13 @@ function HomeScreen() {
 }
 
 function DetailsScreen() {
+  const navigation = useNavigation<NativeStackNavigationProp<ParamList>>();
   return (
     <View className="flex-1 items-center justify-center bg-white">
       <Text className="text-xl font-bold text-blue-500">
         This is the details screen!
       </Text>
+      <Button onPress={() => navigation.goBack()}>Go back</Button>
     </View>
   );
 }
@@ -43,13 +47,13 @@ function RootStack() {
   return (
     <Stack.Navigator
       initialRouteName="Home"
-      screenOptions={{ headerStyle: { backgroundColor: 'tomato' } }}
+      screenOptions={{
+        headerStyle: { backgroundColor: '#f4511e' },
+        headerTintColor: '#fff',
+        headerTitleStyle: { fontWeight: 'bold' },
+      }}
     >
-      <Stack.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{ title: 'Overview' }}
-      />
+      <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="Details" component={DetailsScreen} />
     </Stack.Navigator>
   );
@@ -57,8 +61,10 @@ function RootStack() {
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <RootStack />
-    </NavigationContainer>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <RootStack />
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
