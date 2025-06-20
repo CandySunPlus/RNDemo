@@ -62,7 +62,9 @@ function DetailsScreen() {
       <Text className="text-xl font-bold text-blue-500">
         This is the details screen!
       </Text>
-      <Button title="Go back" onPress={() => navigation.goBack()} />
+      <View className="p-2">
+        <Button title="Go back" onPress={() => navigation.goBack()} />
+      </View>
     </View>
   );
 }
@@ -72,7 +74,9 @@ function ModalScreen() {
   return (
     <View className="flex-1 items-center justify-center bg-white">
       <Text className="text-xl font-bold text-blue-500">Modal Screen!</Text>
-      <Button title="Dismiss" onPress={() => navigation.goBack()} />
+      <View className="p-2">
+        <Button title="Dismiss" onPress={() => navigation.goBack()} />
+      </View>
     </View>
   );
 }
