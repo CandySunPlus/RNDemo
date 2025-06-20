@@ -7,6 +7,8 @@ export default function App() {
       <Text className="text-xl font-bold text-blue-500">
         Welcome to Nativewind!
       </Text>
+      <Text className="text-red-500">Build RN via Metro</Text>
+      <Text className="text-red-500">Build RNW via Rsbuild</Text>
     </View>
   );
 }
