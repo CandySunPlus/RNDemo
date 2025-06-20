@@ -60,7 +60,7 @@ function DetailsScreen() {
   return (
     <View className="flex-1 items-center justify-center bg-white">
       <Text className="text-xl font-bold text-blue-500">
-        This is the details screen!
+        This is Details screen!
       </Text>
       <View className="p-2">
         <Button title="Go back" onPress={() => navigation.goBack()} />
